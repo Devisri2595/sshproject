@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+<class name="com.UserBean" table="projectdetail">
+<id name="userId" column="USER_ID" type="int">
+            <generator class="native"/>
+        </id>
+       
+        <property name="month" column="Project_Entry_Date"/>
+        <property name="projectname" column="Project_name"/>
+        <property name="prjectid" column="Project_iD"/>
+        <property name="projectdetail" column="Project_Detail"/>
+        <property name="created" column="Created"/>
+        <property name="stratdate" column="Start_Date"/>
+        <property name="enddate" column="End_Date"/>
+        <property name="status" column="Status"/>
+
+    
+        
+    </class>
+
+</hibernate-mapping>

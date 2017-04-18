@@ -1,0 +1,86 @@
+<project name="monitor" basedir="." default="main">
+
+    <property name="app.home"     value="${basedir}"/>
+    <property name="src.dir"     value="${basedir}/src"/>
+    <property name="conf.files"     value="${basedir}/conf"/>
+    <property name="build.dir"   value="build"/>
+    <property name="classes.dir" value="WEB-INF/classes"/>
+    <property name="jar.dir"     value="WEB-INF/lib"/>
+    <property name="agent.jar.name" value="proalert-agent"/>
+    <property name="monitor.jar.name" value="strutsspringhibernate"/>
+    <property name="dir.resources.source"   value="${basedir}/conf"/>
+	<property name="dir.resources.dest"  	value="${basedir}/conf"/>
+	<property name="lib.hibernate.source"   value="${basedir}/WEB-INF/lib"/>
+	<property name="lib.hibernate.dest"   value="${classes.dir}/WEB-INF/lib"/>
+    	<property name="dir1.resources.source"   value="${src.dir}/com/resources"/>
+	<property name="dir1.resources.dest"  	value="${classes.dir}/com/resources"/>
+    <property name="lib.dir"     value="WEB-INF/lib"/>
+	 <property name="generated.home"     value="generated"/>
+	 <property name="generated.forced"     value="generatedf"/>
+
+
+
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.*"/>
+       <path location="${conf.files}"/>
+    </path>
+
+
+    <target name="clean">
+        <delete dir="${classes.dir}"/>
+    </target>
+
+
+
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="classpath"/>
+    </target>
+
+	<target name="compile-mon">
+	<antcall target="clean"/>
+        <mkdir dir="${classes.dir}"/>
+        <javac destdir="${classes.dir}"
+		         classpathref="classpath"
+		         debug="on">
+		    <src path="${src.dir}"/>
+		    <include name="com/**"/>
+		    </javac>
+    </target>
+
+     <!-- Package the web module -->
+  <target name="package-web" depends="jar">
+    <war warfile="${basedir}/community.war"
+      webxml="web/WEB-INF/web.xml">
+
+      <fileset dir="web">
+        <include name="**/*"/>
+      </fileset>
+    </war>
+  </target>
+
+	 <target name="jar" depends="compile-mon">
+	            
+		        
+		         <mkdir dir="${lib.hibernate.dest}"/>
+
+		        
+		             
+		        <jar jarfile="${lib.dir}/${monitor.jar.name}.jar" basedir="${classes.dir}" includes="com/**">
+		           
+		        </jar>
+
+		    </target>
+       	
+
+
+	    <target name="clean-build" depends="clean"/>
+
+	    <target name="main" depends="clean"/>
+	   
+
+
+</project>
+
+

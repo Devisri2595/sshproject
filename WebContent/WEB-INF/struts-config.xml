@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+    <form-beans>
+     <form-bean name="UserForm" 
+      type="com.UserForm">
+    </form-bean>
+ </form-beans>
+
+
+<!-- =========================================== Action Mapping Definitions -->
+
+    <action-mappings>
+            
+        <action
+            path="/userForm"
+            type="org.apache.struts.actions.ForwardAction"
+            parameter="/jsp/userForm.jsp"/>
+        
+        <action path="/date" scope="request" name="UserForm" type="com.LoadName">
+		</action>
+		
+        <action path="/getdetail" scope="request"  type="com.LoadDetails">
+		</action>
+
+        <action
+            path="/saveUser"
+            type="com.UserSaveAction"
+            name="UserForm"
+            scope="request"
+            validate="false"
+            input="/pages/Input.jsp"
+            parameter="operation">
+            <forward name="success" path="/userForm.jsp"/>
+           </action> 
+           
+        
+        <action
+            path="/saveUser"
+            type="com.UserSaveAction"
+            name="UserForm"
+            scope="request"
+            validate="false"
+            input="/pages/Input.jsp"
+            parameter="operation">
+            <forward name="success" path="/userForm.jsp"/>
+           </action> 
+           
+        
+        <action
+            path="/saveUser"
+            type="com.UserSaveAction"
+            name="UserForm"
+            scope="request"
+            validate="false"
+            input="/pages/Input.jsp"
+            parameter="operation">
+            <forward name="success" path="/userForm.jsp"/>
+           </action> 
+        
+        
+        
+        
+        
+        
+        
+        
+       </action-mappings>
+    
+
+</struts-config>
+
